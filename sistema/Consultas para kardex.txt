@@ -1,0 +1,8 @@
+INSERT INTO `kardex`(`fecha`, `cantidad`, `precio`, `idproducto`) SELECT venta.fecha_hora,detalle_venta.cantidad,detalle_venta.precio_venta,articulo.idarticulo FROM articulo, detalle_venta,venta where articulo.idarticulo=detalle_venta.idarticulo and detalle_venta.idventa=venta.idventa
+
+
+INSERT INTO `kardex`(`fecha`, `cantidad`, `precio`, `idproducto`) SELECT ingreso.fecha_hora,detalle_ingreso.cantidad_articulos,detalle_ingreso.precio_compra,articulo.idarticulo FROM articulo,detalle_ingreso,ingreso where articulo.idarticulo=detalle_ingreso.idarticulo and detalle_ingreso.idingreso=ingreso.idingreso;
+
+INSERT INTO `kardex`(`fecha`, `cantidad`, `precio`, `idproducto`) SELECT venta.fecha_hora,detalle_venta.cantidad*(-1),detalle_venta.precio_venta,articulo.idarticulo FROM articulo,detalle_venta,venta where articulo.idarticulo=detalle_venta.idarticulo and detalle_venta.idventa=venta.idventa;
+
+SELECT *, SUM(kardex.cantidad)OVER(ORDER BY kardex.fecha, kardex.cantidad)as Stock FROM `kardex` WHERE kardex.idproducto='59' ORDER BY kardex.fecha

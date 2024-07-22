@@ -1,0 +1,9 @@
+body{
+width:500px;
+        height:500px;
+        margin:0 auto;
+        background-size: cover;
+        background-color:grey;
+        background-image: url("../public/images/fondo1.jpg");
+        background-position: 50% 50%;
+}
